@@ -1,22 +1,54 @@
 
 //array of movies
 
-var topics = ["jurassic park", "finding nemo", "mean girs", "titanic", "transformers", "black panther", "avengers", "love simon", "spider man", "coco"]
+var topics = ["ramen", "pizza", "hamburger", "fried chicken", "hot dogs", "chips", "french fries", "apple", "cheese", "chocolate"];
 
-function renderButtons() {
-    $("#movieButton").empty();
+function displayInfo() {
 
-    for (var i = 0; i < topics.length; i++){
+var topicArr = $(this).attr("data-name");
+console.log(this)
+var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+topicArr + "&api_key=FyTBOceE4j4aegNLriIXtUgc4JFMQWzG&limit=10";
 
-  var button = $("<button>");
-  button.addClass("topics");
-  button.attr(topics[i]);
-  button.text(topics[i]);
-  $("#movieButton").append(button)
-    };
+$.ajax({
+  url: queryURL,
+  method: "GET"
+}).then(function(response) {
+  console.log(response)
+  for(var i = 0; i < response.data.length; i ++){
+  var rating = response.data[i].rating
+    var movieURL = response.data[i].images.original.url;
+    var gifDiv = $("<div>")
+    var movieImage = $("<img>");
+    var p = $("<p>").text("Rating: " + rating)
+    
+
+    movieImage.attr("src", movieURL);
+    movieImage.attr("alt", "movie Image");
+
+    
+    gifDiv.append(p, movieImage);
+
+    $("#appearGif").prepend(gifDiv)
+  };
+}); 
 };
 
-//adding a button with inputing a name and pressing the add button.
+function renderButtons(){
+  
+  $("#movieButton").empty();
+
+  for(i = 0; i < topics.length; i++){
+
+  var button = $("<button>");
+
+  button.addClass("topicsButton");
+  button.attr("data-name", topics[i]);
+  button.text(topics[i]);
+  $("#movieButton").append(button);
+  }
+};
+
 $("#add").on("click", function(event){
   event.preventDefault();
 
@@ -24,59 +56,9 @@ $("#add").on("click", function(event){
   topics.push(addMovie)
   renderButtons()
 
-
   
 });
+
+$(document).on("click", ".topicsButton", displayInfo)
 renderButtons()
-
-
-$("#movieButton").on("click", function (){ 
-
-//api link
-var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-topics + "&api_key=FyTBOceE4j4aegNLriIXtUgc4JFMQWzG";
-
-//getting the infomraiton from the api 
-$.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function(response) {
-    for(var j = 0; j < response.data.length; j ++){
     
-    console.log(response.data[j].images.original.url);
-
-    var movieURL = response.data[j].images.original.url;
-    
-    var movieImage = $("<img>");
-
-    movieImage.attr("src", movieURL);
-    movieImage.attr("alt", "movie Image");
-
-    $("#movieButton").prepend(movieImage)
-
-    };
-  });
-
-
-  
-  
-  
-  
-
-
-
-
-
-  
-});
-
-
-
-  
-  //looping through the given array and adding a button to the screen when it loads
-  
-  
-  
-  
-  
-  
