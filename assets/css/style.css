@@ -2,6 +2,15 @@ body{
         
     text-align: center;
 }
+
+h1{
+    margin: 25px auto auto auto;
+    font-size: 50px;
+    font-weight: bolder;
+    text-decoration: underline;
+
+    
+}
 .card{
     margin: 25px auto auto auto;
     width: 80%;
