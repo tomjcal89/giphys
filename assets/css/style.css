@@ -1,0 +1,62 @@
+body{
+        
+    text-align: center;
+}
+.card{
+    margin: 25px auto auto auto;
+    width: 80%;
+    border: solid black;
+
+}
+
+button{
+    margin-right: 20px;
+    margin-top: 10px;
+    background-color: navy;
+    font-size: 20px;
+    color: white;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+img{
+    height: 250px;
+    width: 350px;
+    border: black solid 5px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    
+}
+
+#personForm{
+   margin-top: 20px;
+   border: solid gray;
+   width: 20%;
+   margin: auto;
+   border-radius: 20px;
+   text-align: center;
+   padding: 20px;
+   
+}
+
+p {
+    font-size: 20px;
+}
+
+#add{
+    margin-top: 15px;
+   background: gray;
+}
+
+input[value] {
+    border-radius: 20px;
+}
+
+input[type] {
+    border-radius: 10px;
+}
+
+
+
+
+
